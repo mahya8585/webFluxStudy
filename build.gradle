@@ -1,0 +1,70 @@
+group 'ms-stt-sample'
+version '1.0'
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
+    }
+    dependencies {
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M6'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+//Azure WebApps用
+war {
+    baseName = 'ROOT'
+    manifest {
+        attributes 'Main-Class': 'msSttSample'
+    }
+}
+
+jar {
+    baseName = 'msSttSample'
+    manifest {
+        attributes 'Main-Class': 'msSttSample'
+    }
+}
+
+configurations {
+    providedRuntime
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+}
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.0.0.M6', ext: 'pom'
+
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.0.M6'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.0.0.M6'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.0.0.M6'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.0.0.M6'
+
+    providedRuntime group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.0.0.M6'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.3'
+}

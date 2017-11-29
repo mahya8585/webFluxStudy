@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>議事録</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/meeting.js"></script>
+</head>
+<body>
+
+<div>
+    <div class="form-group">
+        <form id="dataForm" action="#" enctype="multipart/form-data" method="post">
+            <input type="file" name="fileData" />
+            <button type="button" id="sendFile">アップロード</button>
+        </form>
+    </div>
+</div>
+<div>
+    <table>
+        <thead>
+        <th>メッセージ</th>
+        </thead>
+        <tbody id="messages">
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
